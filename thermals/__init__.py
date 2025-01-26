@@ -1,4 +1,5 @@
 from .settings import readSettings
 from .readIdrac import readIdrac
-from .upload import upload
-from .loop import loop
+from .upload import upload,uploadGpu
+from .loop import loop,loopGpu
+from .gpu import getGpuMachine,getAllGpu
