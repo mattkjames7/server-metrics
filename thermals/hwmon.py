@@ -1,7 +1,7 @@
 import os
 import re
 
-def HwMonTemps(object):
+class HwMonTemps(object):
     def getTemps(self):
         """
         Scans the /sys/class/hwmon interface and collects temperature sensor readings.

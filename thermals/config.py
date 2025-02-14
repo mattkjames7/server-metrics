@@ -2,7 +2,21 @@ import json
 import os
 
 def readConfig():
+    """
+    data should have the following structure
 
+    {
+        "influxdb": {
+            "url": "url to database",
+            "token": "access token",
+            "organization": "organization name",
+            "host": "IP to host",
+            "bucket": "bucket name"
+        },
+        "ipmi": see `ipmi.py` for structure
+    }
+    
+    """
     home = os.getenv("HOME")
     configDir = f"{home}/.server-thermals"
     data = {}
