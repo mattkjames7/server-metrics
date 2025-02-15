@@ -1,0 +1,13 @@
+[Unit]
+Description=Server Thermals Monitoring Service
+After=network.target
+
+[Service]
+ExecStart=/var/lib/server-thermals/venv/bin/server-thermals --config /etc/server-thermals/server-config.json
+Restart=on-failure
+User=server-thermals
+Group=server-thermals
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
