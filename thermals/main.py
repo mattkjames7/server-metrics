@@ -8,7 +8,7 @@ from .upload import uploadMetrics
 import subprocess
 from time import time,sleep
 
-def main(period=10):
+def main():
 
     hostname = subprocess.run(
         ["hostname"],
@@ -17,7 +17,7 @@ def main(period=10):
     ).stdout.strip()
 
     config = readConfig()
-
+    period = config.get("period",10)
     sensors = []
     if "ipmi" in config:
         ipmi = IPMITemps(config["ipmi"])

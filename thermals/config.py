@@ -6,6 +6,7 @@ def readConfig():
     data should have the following structure
 
     {
+        "period": 10, # sampling period in seconds (optional)
         "influxdb": {
             "url": "url to database",
             "token": "access token",
