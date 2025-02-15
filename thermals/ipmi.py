@@ -38,12 +38,12 @@ class IPMITemps(object):
         for object in self.objects:
             try:
                 obj = session.get(object["oid"])
-                value = obj.value*object.get("multiplier",1.0)
+                value = float(obj.value)*object.get("multiplier",1.0)
                 out.append({
-                    "name": obj["name"],
+                    "name": object["name"],
                     "value": value
                 })
-            except:
-                pass
+            except Exception as e:
+                print(e)
             
         return out

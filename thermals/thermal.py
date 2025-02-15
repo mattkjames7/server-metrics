@@ -14,7 +14,7 @@ class ThermalTemps(object):
 
 
 
-    def getSensorFriendlyName(sensorPath):
+    def getSensorFriendlyName(self,sensorPath):
         """
         Try to determine a friendly name for the sensor.
         Some systems provide a 'name' file; otherwise, we fall back to the 'type' file.

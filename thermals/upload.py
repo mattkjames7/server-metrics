@@ -1,6 +1,6 @@
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
-from datetime import datetime
+from datetime import datetime,timezone
 
 def upload(data,settings):
 
@@ -29,6 +29,28 @@ def upload(data,settings):
 
     # Close the client
     client.close()
+
+
+
+def uploadMetrics(data,settings):
+
+    dbsettings = settings["influxdb"]
+
+    client = InfluxDBClient(
+        dbsettings["url"],
+        dbsettings["token"],
+        dbsettings["organization"]
+    )
+
+    point = Point("metrics").tag("host", dbsettings["host"]).time(datetime.now(timezone.utc), WritePrecision.NS)
+    for key, value in data.items():
+        point.field(key, value)
+
+    write_api = client.write_api(write_options=SYNCHRONOUS)
+    write_api.write(bucket=dbsettings["bucket"], org=dbsettings["organization"], record=point)
+
+    client.close()
+
 
 def uploadGpu(data,machine,settings):
 
