@@ -1,0 +1,13 @@
+{
+    "influxdb": {
+        "token": "insert token here",
+        "bucket": "bucket name",
+        "url": "http://db.IP.address:8086",
+        "host": "db IP address",
+        "organization": "org name"
+    },
+    "amdgpu": true,
+    "nvidiagpu": true,
+    "hwmon": true,
+    "thermal": true
+}

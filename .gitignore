@@ -1,4 +1,6 @@
 settings.cfg
+*.deb
+*.rpm
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

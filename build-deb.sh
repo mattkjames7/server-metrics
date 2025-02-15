@@ -32,7 +32,7 @@ cp systemd/server-thermals.service "${BUILD_DIR}/lib/systemd/system/server-therm
 
 # Copy the default configuration file if it exists
 if [ -f server-config.json ]; then
-  cp server-config.json "${BUILD_DIR}/etc/server-thermals/server-config.json"
+  cp default-config.json "${BUILD_DIR}/etc/server-thermals/server-config.json"
 fi
 
 # copy the wheel file
