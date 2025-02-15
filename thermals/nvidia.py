@@ -6,6 +6,7 @@ from pynvml import (
     nvmlDeviceGetName,
     nvmlDeviceGetTemperature,
     nvmlDeviceGetFanSpeed,
+    nvmlDeviceGetPowerUsage,
     NVML_TEMPERATURE_GPU,
     NVMLError,
 )
@@ -32,7 +33,7 @@ class NvidiaTemps(object):
             try:
                 temp = nvmlDeviceGetTemperature(handle, NVML_TEMPERATURE_GPU)
                 out.append({
-                    "name": f"{name} - Temp",
+                    "name": f"{name} - Temp (C)",
                     "value": temp
                 })
             except NVMLError:
@@ -41,8 +42,17 @@ class NvidiaTemps(object):
             try:
                 fanSpeed = nvmlDeviceGetFanSpeed(handle)
                 out.append({
-                    "name": f"{name} - Fan",
+                    "name": f"{name} - Fan (%)",
                     "value": fanSpeed
+                })
+            except NVMLError:
+                pass
+
+            try:
+                power = nvmlDeviceGetPowerUsage(handle)/1000.0
+                out.append({
+                    "name": f"{name} - Power (W)",
+                    "value": power
                 })
             except NVMLError:
                 pass
