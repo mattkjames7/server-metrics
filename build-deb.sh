@@ -3,7 +3,7 @@ set -e
 
 # ===== Configuration =====
 PACKAGE_NAME="server-thermals"
-VERSION="0.1.0"
+VERSION=$(python3 -c "from thermals import __version__; print(__version__)")
 MAINTAINER="Matt James https://github.com/mattkjames7"
 DESCRIPTION="Server Thermals Monitoring Service"
 PREFIX="/"  # root prefix for installation paths
