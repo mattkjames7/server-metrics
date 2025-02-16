@@ -1,0 +1,13 @@
+[Unit]
+Description=Server Metrics Monitoring Service
+After=network.target
+
+[Service]
+ExecStart=/var/lib/server-metrics/venv/bin/server-metrics --config /etc/server-metrics/server-config.json
+Restart=on-failure
+User=server-metrics
+Group=server-metrics
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

@@ -2,7 +2,7 @@
 set -e
 
 # =============================
-# Generic Install Script for server-thermals
+# Generic Install Script for server-metrics
 # =============================
 
 # Check for root privileges.
@@ -12,22 +12,22 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # --- Configuration Variables ---
-PACKAGE_NAME="server-thermals"
+PACKAGE_NAME="server-metrics"
 VERSION="0.1.0"
 MAINTAINER="Matt James https://github.com/mattkjames7"
-DESCRIPTION="Server Thermals Monitoring Service"
+DESCRIPTION="Server Metrics Monitoring Service"
 
 # File paths for your artifacts.
-EXECUTABLE="server-thermals"                # The executable script to install.
-SYSTEMD_UNIT="systemd/server-thermals.service"  # Your systemd service unit file.
+EXECUTABLE="server-metrics"                # The executable script to install.
+SYSTEMD_UNIT="systemd/server-metrics.service"  # Your systemd service unit file.
 CONFIG_FILE="default-config.json"           # The default configuration file.
 DIST_DIR="dist"                             # Directory for the built wheel.
 
 # --- Target Installation Directories ---
 TARGET_BIN="/usr/local/bin"
 TARGET_SYSTEMD="/lib/systemd/system"
-TARGET_CONFIG="/etc/server-thermals"
-TARGET_APP="/var/lib/server-thermals"
+TARGET_CONFIG="/etc/server-metrics"
+TARGET_APP="/var/lib/server-metrics"
 
 # =============================
 # Build the Python Wheel
@@ -74,19 +74,19 @@ mkdir -p "${TARGET_APP}"
 cp "${DIST_DIR}/${WHEEL}" "${TARGET_APP}/"
 
 # 5. Create a dedicated system user if it doesn't exist.
-if ! id -u server-thermals >/dev/null 2>&1; then
-    echo "Creating dedicated system user 'server-thermals'..."
-    useradd --system --no-create-home --shell /usr/sbin/nologin server-thermals
+if ! id -u server-metrics >/dev/null 2>&1; then
+    echo "Creating dedicated system user 'server-metrics'..."
+    useradd --system --no-create-home --shell /usr/sbin/nologin server-metrics
 fi
 
 # 6. Ensure the app directory is owned by the dedicated user.
-chown -R server-thermals:server-thermals "${TARGET_APP}"
+chown -R server-metrics:server-metrics "${TARGET_APP}"
 
 # 7. Create a Python virtual environment if not already present.
 if [ ! -d "${TARGET_APP}/venv" ]; then
     echo "Creating Python virtual environment in ${TARGET_APP}/venv..."
     python3 -m venv "${TARGET_APP}/venv"
-    chown -R server-thermals:server-thermals "${TARGET_APP}/venv"
+    chown -R server-metrics:server-metrics "${TARGET_APP}/venv"
 fi
 
 # 8. Install the Python package from the wheel file in the virtual environment.
@@ -100,10 +100,10 @@ systemctl daemon-reload
 
 # 10. Enable the service to start on boot.
 echo "Enabling ${PACKAGE_NAME}.service..."
-systemctl enable server-thermals.service
+systemctl enable server-metrics.service
 
 # 11. Start the service immediately.
 echo "Starting ${PACKAGE_NAME}.service..."
-systemctl start server-thermals.service
+systemctl start server-metrics.service
 
 echo "Installation of ${PACKAGE_NAME} complete."

@@ -21,7 +21,7 @@ def readConfig():
 
     data = {}
     
-    fname = "/etc/server-thermals/server-config.json"
+    fname = "/etc/server-metrics/server-config.json"
     if os.path.isfile(fname):
         with open(fname,"r") as f:
             data = json.load(f)

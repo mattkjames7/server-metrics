@@ -2,7 +2,7 @@
 set -e
 
 # =============================
-# Generic Uninstall Script for server-thermals
+# Generic Uninstall Script for server-metrics
 # =============================
 
 # Ensure the script is run as root.
@@ -11,14 +11,14 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-PACKAGE_NAME="server-thermals"
-SERVICE_NAME="server-thermals.service"
+PACKAGE_NAME="server-metrics"
+SERVICE_NAME="server-metrics.service"
 
 # Target paths (must match those used in the install script)
 TARGET_BIN="/usr/local/bin"
 TARGET_SYSTEMD="/lib/systemd/system"
-TARGET_CONFIG="/etc/server-thermals"
-TARGET_APP="/var/lib/server-thermals"
+TARGET_CONFIG="/etc/server-metrics"
+TARGET_APP="/var/lib/server-metrics"
 
 EXECUTABLE="${TARGET_BIN}/${PACKAGE_NAME}"
 
@@ -42,9 +42,9 @@ echo "Reloading systemd daemon..."
 systemctl daemon-reload
 
 # Optionally, remove the dedicated system user if it exists.
-if id "server-thermals" &>/dev/null; then
-    echo "Removing dedicated system user 'server-thermals'..."
-    userdel server-thermals || echo "Warning: Could not remove user 'server-thermals'."
+if id "server-metrics" &>/dev/null; then
+    echo "Removing dedicated system user 'server-metrics'..."
+    userdel server-metrics || echo "Warning: Could not remove user 'server-metrics'."
 fi
 
 echo "Uninstallation of ${PACKAGE_NAME} complete."

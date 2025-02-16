@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 def getVersion():
-    with open("thermals/__init__.py") as f:
+    with open("metrics/__init__.py") as f:
         lines = f.readlines()
     version = "0.0.0"
     for line in lines:
@@ -11,7 +11,7 @@ def getVersion():
     return version
 
 setup(
-    name="server-thermals",
+    name="server-metrics",
     version=getVersion(),
     packages=find_packages(),
     install_requires=[
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "server-thermals = thermals:main",
+            "server-metrics = metrics:main",
         ],
     },
 )

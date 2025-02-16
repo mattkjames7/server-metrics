@@ -1,4 +1,4 @@
-# server-thermals
+# server-metrics
 
 Collects metrics for servers/computers to be stored in an InfluxDB. By default, it will attempt to collect sensor information from `/sys/class/thermal` and `/sys/class/hwmon`. It also collects Nvidia GPU information using `pynvml`, eventually will probably use `rocm-smi` to collect AMD GPU data.
 
@@ -8,14 +8,14 @@ Collects metrics for servers/computers to be stored in an InfluxDB. By default, 
 
 Download the `.deb` package and install via apt:
 ```bash
-sudo apt install ./server-thermals_x.y.z_amd64.deb`
+sudo apt install ./server-metrics_x.y.z_amd64.deb`
 ```
 
 ### Fedora
 
 Download the `.rpm` package and install using `dnf`:
 ```bash
-sudo dnf install ./server-thermals-0.1.0-1.x86_64.rpm
+sudo dnf install ./server-metrics-0.1.0-1.x86_64.rpm
 ```
 
 ### Others
@@ -30,13 +30,13 @@ sudo ./install.sh
 ### Ubuntu/Debian/Mint
 
 ```bash
-sudo apt remove server-thermals
+sudo apt remove server-metrics
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf remove server-thermals
+sudo dnf remove server-metrics
 ```
 
 ### Others
@@ -47,7 +47,7 @@ sudo ./uninstall.sh
 
 ## Configuration
 
-The configuration file is stored in `/etc/server-thermals/server-config.json`. The default configuration file **will not work** out of the box because the connection details for the influxDB intance need to be configured. To do so, edit the `influxdb` key of the config file:
+The configuration file is stored in `/etc/server-metrics/server-config.json`. The default configuration file **will not work** out of the box because the connection details for the influxDB intance need to be configured. To do so, edit the `influxdb` key of the config file:
 ```json
     "influxdb": {
         "token": "insert token here",
@@ -66,7 +66,7 @@ By default, the configuration will attempt to find sensor for hwmon, thermals, n
     "thermal": true
 ```
 
-It can also be configured to collect information from an IPMI device via SNMP (this has only been tested on an iDRAC 7) by configurignthe `ipmi` key:
+It can also be configured to collect information from an IPMI device via SNMP (this has only been tested on an iDRAC 7) by configuring the `ipmi` key:
 ```json
     "ipmi": {
         "host": "192.168.0.20", # IPMI IP address
@@ -82,4 +82,4 @@ It can also be configured to collect information from an IPMI device via SNMP (t
     }
 ```
 
-Once the JSON has been configured, run `sudo systemctl restart server-thermals` to load it.
+Once the JSON has been configured, run `sudo systemctl restart server-metrics` to load it.
