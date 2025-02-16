@@ -84,11 +84,28 @@ It can also be configured to collect information from an IPMI device via SNMP (t
 
 Once the JSON has been configured, run `sudo systemctl restart server-metrics` to load it.
 
-## Building Archives
+## Building Packages
 
 ### Deb
 
+```bash
+sudo apt-get update
+sudo apt-get install ruby ruby-dev build-essential
+gem install fpm
+./build-deb.sh
+```
 
 ### RPM
 
-python3
+```bash
+sudo dnf install ruby ruby-devel gcc make rpm-build python3 python3-setuptools
+sudo gem install --no-document fpm
+./build-rpm.sh
+```
+
+### Cleanup
+
+Clean up all of the extra files created in either build case using
+```bash
+./clean.sh
+```
