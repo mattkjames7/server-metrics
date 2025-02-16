@@ -3,7 +3,7 @@ set -e
 
 # ===== Configuration =====
 PACKAGE_NAME="server-metrics"
-VERSION=$(python3 -c "from setup import getVersion; print(getVersion)")
+VERSION=$(grep -oP '^__version__\s*=\s*"\K[^"]+' metrics/__init__.py)
 MAINTAINER="Matt James https://github.com/mattkjames7"
 DESCRIPTION="Server Metrics Monitoring Service"
 PREFIX="/"  # root prefix for installation paths
