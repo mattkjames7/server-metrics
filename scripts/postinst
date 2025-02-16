@@ -17,7 +17,7 @@ if [ ! -d /var/lib/server-thermals/venv ]; then
 fi
 
 # Install your Python package inside the virtual environment using the provided wheel
-/var/lib/server-thermals/venv/bin/pip install /var/lib/server-thermals/server_thermals-0.1.0-py3-none-any.whl
+/var/lib/server-thermals/venv/bin/pip install /var/lib/server-thermals/server-thermals-0.1.0.tar.gz
 
 # Reload systemd configuration to pick up the new service file
 systemctl daemon-reload
@@ -27,4 +27,3 @@ systemctl enable server-thermals.service
 
 # Start the service immediately
 systemctl start server-thermals.service
-
