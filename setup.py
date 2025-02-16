@@ -12,7 +12,7 @@ def getVersion():
 
 setup(
     name="server-thermals",
-    version=getVersion()
+    version=getVersion(),
     packages=find_packages(),
     install_requires=[
         "pynvml",
