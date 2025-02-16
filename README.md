@@ -81,3 +81,5 @@ It can also be configured to collect information from an IPMI device via SNMP (t
         ]
     }
 ```
+
+Once the JSON has been configured, run `sudo systemctl restart server-thermals` to load it.
