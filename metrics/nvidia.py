@@ -7,6 +7,8 @@ from pynvml import (
     nvmlDeviceGetTemperature,
     nvmlDeviceGetFanSpeed,
     nvmlDeviceGetPowerUsage,
+    nvmlDeviceGetUtilizationRates,
+    nvmlDeviceGetMemoryInfo,
     NVML_TEMPERATURE_GPU,
     NVMLError,
 )
@@ -54,6 +56,39 @@ class NvidiaTemps(object):
                     "name": f"{name} - Power (W)",
                     "value": power
                 })
+            except NVMLError:
+                pass
+
+            try:
+                mem = nvmlDeviceGetMemoryInfo(handle)
+                gb = 1024*1024*1024
+                out.extend([
+                    {
+                        "name": f"{name} - Memory Total (GB)",
+                        "value": mem.total/gb
+                    },{
+                        "name": f"{name} - Memory Free (GB)",
+                        "value": mem.free/gb
+                    },{
+                        "name": f"{name} - Memory Used (GB)",
+                        "value": mem.used/gb
+                    },
+                ])
+            except NVMLError:
+                pass
+
+            try:
+                util = nvmlDeviceGetUtilizationRates(handle)
+                gb = 1024*1024*1024
+                out.extend([
+                    {
+                        "name": f"{name} - GPU Util (%)",
+                        "value": util.gpu
+                    },{
+                        "name": f"{name} - Memory Use (%)",
+                        "value": util.memory
+                    }
+                ])
             except NVMLError:
                 pass
 
