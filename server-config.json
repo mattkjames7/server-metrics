@@ -70,5 +70,6 @@
     "amdgpu": true,
     "nvidiagpu": true,
     "hwmon": true,
-    "thermal": true
+    "thermal": true,
+    "psutil": true
 }

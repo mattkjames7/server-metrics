@@ -4,6 +4,7 @@ from .amdgpu import AmdgpuTemps
 from .nvidia import NvidiaTemps
 from .hwmon import HwMonTemps
 from .thermal import ThermalTemps
+from .psutil import PsutilTemps
 from .upload import uploadMetrics
 import subprocess
 from time import time,sleep
@@ -31,6 +32,8 @@ def main():
         sensors.append(HwMonTemps())
     if config.get("thermal",True):
         sensors.append(ThermalTemps())
+    if config.get("psutil",True):
+        sensors.append(PsutilTemps())
 
     while True:
         t0 = time()
