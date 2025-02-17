@@ -1,3 +1,0 @@
-import thermals
-
-thermals.loop()
