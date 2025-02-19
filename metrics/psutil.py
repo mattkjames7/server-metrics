@@ -21,7 +21,7 @@ class PsutilTemps(object):
             },
             {
                 "name": "RAM Used (GB)",
-                "value": ramUsed
+                "value": ramUsed/gb
             },
             {
                 "name": "RAM Used (%)",
@@ -29,7 +29,7 @@ class PsutilTemps(object):
             },
             {
                 "name": "RAM Total (GB)",
-                "value": ramTotal
+                "value": ramTotal/gb
             }
         ]
         for i,cpu in enumerate(perCpu):
