@@ -31,7 +31,7 @@ class NvidiaTemps(object):
 
         for device in range(self.devices):
             handle = nvmlDeviceGetHandleByIndex(device)
-            name = nvmlDeviceGetName()
+            name = nvmlDeviceGetName(handle)
             try:
                 temp = nvmlDeviceGetTemperature(handle, NVML_TEMPERATURE_GPU)
                 out.append({
