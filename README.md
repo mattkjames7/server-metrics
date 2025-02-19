@@ -63,7 +63,8 @@ By default, the configuration will attempt to find sensor for hwmon, thermals, n
     "amdgpu": true,
     "nvidiagpu": true,
     "hwmon": true,
-    "thermal": true
+    "thermal": true,
+    "psutil": true
 ```
 
 It can also be configured to collect information from an IPMI device via SNMP (this has only been tested on an iDRAC 7) by configuring the `ipmi` key:
