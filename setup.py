@@ -17,7 +17,8 @@ setup(
     install_requires=[
         "pynvml",
         "easysnmp",
-        "influxdb-client"
+        "influxdb-client",
+        "psutil"
     ],
     entry_points={
         "console_scripts": [
